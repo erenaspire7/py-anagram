@@ -1,9 +1,16 @@
 import itertools
+import nltk
+
+nltk.download("words")
+from nltk.corpus import words
+
+correct_words = words.words()
+
 
 def generate_anagrams(word):
     # Convert the word to lowercase and remove spaces
     word = word.lower().replace(" ", "")
-    
+
     # Generate all possible permutations of the letters in the word
     permutations = itertools.permutations(word)
 
@@ -11,10 +18,15 @@ def generate_anagrams(word):
     anagrams = set()
     for permutation in permutations:
         permutation_str = "".join(permutation)
-        if permutation_str != word and is_anagram(permutation_str, word):
+        if (
+            permutation_str != word
+            and is_anagram(permutation_str, word)
+            and permutation_str in correct_words
+        ):
             anagrams.add(permutation_str)
 
     return anagrams
+
 
 def is_anagram(str1, str2):
     # Convert strings to lowercase and remove spaces
@@ -31,6 +43,9 @@ def is_anagram(str1, str2):
     else:
         return False
 
+
 # Example usage
-anagrams = generate_anagrams("triangle")
+anagrams = generate_anagrams("earth")
 print(anagrams)
+
+
