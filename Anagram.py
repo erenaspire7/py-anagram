@@ -49,3 +49,6 @@ anagrams = generate_anagrams("earth")
 print(anagrams)
 
 
+break python code
+
+
